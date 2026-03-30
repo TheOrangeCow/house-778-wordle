@@ -7,8 +7,8 @@ require '/var/www/house-778/vendor/autoload.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-if (file_exists(__DIR__ . '/.env')) {
-    foreach (file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+if (file_exists( "/var/www/house-778/wordle/.env")) {
+    foreach (file("/var/www/house-778/wordle/.env", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
         if (strpos(trim($line), '#') === 0) continue;
         putenv($line);
     }
