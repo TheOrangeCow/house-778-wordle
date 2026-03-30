@@ -17,7 +17,7 @@ $username = getenv('db_user');
 $password = getenv('db_pass');
 $dbname = "wordle";
 
-$conn = new mysqli($host, $user, $pass, $db);
+$conn = new mysqli($host, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
