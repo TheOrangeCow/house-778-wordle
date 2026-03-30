@@ -16,9 +16,9 @@ if (file_exists(__DIR__ . '/.env')) {
 
 
 $host = "127.0.0.1:3306";
-$username = getenv('db_user');
-$password = getenv('db_pass');
-$dbname = "wordle";
+$user = getenv('db_user');
+$pass = getenv('db_pass');
+$db = "wordle";
 
 $conn = new mysqli($host, $user, $pass, $db);
 if ($conn->connect_error) {
