@@ -2,8 +2,9 @@
 ini_set('display_errors', 1); 
 ini_set('display_startup_errors', 1); 
 error_reporting(E_ALL);
-include "../base/main.php";
 session_start(); 
+include "../base/main.php";
+
 
 if (file_exists(__DIR__ . '/.env')) {
     foreach (file(__DIR__ . '/.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
@@ -16,6 +17,7 @@ $host = "127.0.0.1:3306";
 $username = getenv('db_user');
 $password = getenv('db_pass');
 $dbname = "wordle";
+$error = "";
 
 $conn = new mysqli($host, $username, $password, $dbname);
 if ($conn->connect_error) {
@@ -94,7 +96,7 @@ if (isset($_POST['email'])) {
         $row = $result->fetch_assoc();
         if ($row['confirmed']) {
             $error = "You are already subscribed.";
-        } else {l
+        } else {
             $token = $row['token'];
             if (send_confirmation_email($new_email, $token)) {
                 $error = "A confirmation email has been resent. Please check your inbox.";
