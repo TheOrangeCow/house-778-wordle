@@ -30,13 +30,11 @@ if (isset($_POST['sub'])) {
     if (isset($_GET['token'])) {
         $token = $_GET['token'];
 
-        // Check if the token exists in the database and if the email is unconfirmed
         $stmt = $pdo->prepare("SELECT * FROM emails WHERE token = :token AND confirmed = 0");
         $stmt->execute(['token' => $token]);
         $email = $stmt->fetch();
 
         if ($email) {
-            // Update email as confirmed
             $stmt = $pdo->prepare("UPDATE emails SET confirmed = 1 WHERE token = :token");
             $stmt->execute(['token' => $token]);
 
@@ -53,13 +51,12 @@ if (isset($_POST['desub'])) {
     if (isset($_GET['token'])) {
         $token = $_GET['token'];
 
-        // Check if the token exists in the database
         $stmt = $pdo->prepare("SELECT * FROM emails WHERE token = :token");
         $stmt->execute(['token' => $token]);
         $email = $stmt->fetch();
 
         if ($email) {
-            // Remove the email from the database
+
             $stmt = $pdo->prepare("DELETE FROM emails WHERE token = :token");
             $stmt->execute(['token' => $token]);
 
