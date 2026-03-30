@@ -73,9 +73,10 @@ try {
     $mail->Password = getenv('GMAIL_APP_PASS');
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
     $mail->Port = 465;
-
+    $mail->isHTML(true);
+    $mail->Subject = 'Wordle Answer';
     $mail->setFrom('coworange9@gmail.com', 'TheWordleAnswers');
-    $mail->addAddress($email);
+
 
     foreach ($emails as $email) {
         $unsubscribe_link = "http://wordle.house-778.org/unsubscribe.php?email=" . urlencode($email);
@@ -88,7 +89,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Template</title>
+    <title>Email</title>
 </head>
 <body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
     <div style="text-align: center; width: 100%; max-width: 600px; margin: 30px auto; border-radius: 10px; background-color: #ffffff; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
