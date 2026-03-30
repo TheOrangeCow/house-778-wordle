@@ -1,5 +1,4 @@
 <?php
-
 include "../base/main.php";
 session_start();
 if (file_exists(__DIR__ . '/.env')) {
